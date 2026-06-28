@@ -1,0 +1,33 @@
+<%- include('../partials/header') %>
+<section class="detail-layout">
+    <div class="detail-media">
+        <img src="<%= product.image %>" alt="<%= product.name %>">
+    </div>
+    <div class="detail-info">
+        <p class="category"><%= product.category %> - <%= product.brand %></p>
+        <h1><%= product.name %></h1>
+        <p class="price large"><%= product.price.toLocaleString('vi-VN') %>đ</p>
+        <p>Còn hàng: <strong><%= product.stock %></strong></p>
+        <p>Điểm hiệu năng: <strong><%= product.performance %>/100</strong></p>
+        <% if (user) { %>
+            <form action="/cart/add/<%= product.id %>" method="post">
+                <button class="btn primary" type="submit">Thêm vào giỏ hàng</button>
+            </form>
+        <% } else { %>
+            <a class="btn primary" href="/login">Đăng nhập để mua hàng</a>
+        <% } %>
+    </div>
+</section>
+
+<section class="spec-box">
+    <h2>Thông số kỹ thuật</h2>
+    <table>
+        <% Object.entries(product.specs).forEach(([key, value]) => { %>
+            <tr>
+                <th><%= key.toUpperCase() %></th>
+                <td><%= value %></td>
+            </tr>
+        <% }) %>
+    </table>
+</section>
+<%- include('../partials/footer') %>
