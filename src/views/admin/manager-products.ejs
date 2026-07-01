@@ -1,0 +1,60 @@
+<%- include('../partials/header') %>
+<div class="admin-layout">
+    <%- include('../partials/admin_sidebar') %>
+    <section class="admin-content">
+        <h1>Quan ly linh kien</h1>
+        <form class="admin-form" action="/admin/products" method="post">
+            <input name="name" placeholder="Ten linh kien" required>
+            <input name="brand" placeholder="Hang" required>
+            <select name="category">
+                <% categories.forEach((category) => { %><option value="<%= category %>"><%= category %></option><% }) %>
+            </select>
+            <input name="price" type="number" placeholder="Gia" required>
+            <input name="stock" type="number" placeholder="Ton kho" required>
+            <input name="performance" type="number" min="1" max="100" placeholder="Hieu nang" value="70" required>
+            <button class="btn primary" type="submit">Them linh kien</button>
+        </form>
+
+        <div class="admin-product-list">
+            <% products.forEach((product) => { %>
+                <article class="admin-product-row">
+                    <form class="product-edit-form" action="/admin/products/<%= product.id %>/update" method="post">
+                        <label>
+                            Ten
+                            <input name="name" value="<%= product.name %>" required>
+                        </label>
+                        <label>
+                            Hang
+                            <input name="brand" value="<%= product.brand %>" required>
+                        </label>
+                        <label>
+                            Danh muc
+                            <select name="category">
+                                <% categories.forEach((category) => { %>
+                                    <option value="<%= category %>" <%= product.category === category ? 'selected' : '' %>><%= category %></option>
+                                <% }) %>
+                            </select>
+                        </label>
+                        <label>
+                            Gia
+                            <input name="price" type="number" value="<%= product.price %>" required>
+                        </label>
+                        <label>
+                            Kho
+                            <input name="stock" type="number" value="<%= product.stock %>" required>
+                        </label>
+                        <label>
+                            Hieu nang
+                            <input name="performance" type="number" min="1" max="100" value="<%= product.performance %>" required>
+                        </label>
+                        <button class="btn small primary" type="submit">Sua</button>
+                    </form>
+                    <form action="/admin/products/<%= product.id %>/delete" method="post" class="product-delete-form">
+                        <button class="btn small danger" type="submit" data-confirm="Xoa linh kien nay?">Xoa</button>
+                    </form>
+                </article>
+            <% }) %>
+        </div>
+    </section>
+</div>
+<%- include('../partials/footer') %>

@@ -1,0 +1,27 @@
+<%- include('../partials/header') %>
+<div class="admin-layout">
+    <%- include('../partials/admin_sidebar') %>
+    <section class="admin-content">
+        <h1>Dashboard</h1>
+        <div class="metric-grid">
+            <article><span>Doanh thu</span><strong><%= summary.revenue.toLocaleString('vi-VN') %>đ</strong></article>
+            <article><span>Đơn hàng</span><strong><%= summary.orders %></strong></article>
+            <article><span>Chờ duyệt</span><strong><%= summary.pending %></strong></article>
+        </div>
+        <div class="chart-bars">
+            <div style="height: 70%"></div>
+            <div style="height: 45%"></div>
+            <div style="height: 82%"></div>
+            <div style="height: 55%"></div>
+            <div style="height: 92%"></div>
+        </div>
+        <h2>Đơn gần đây</h2>
+        <table class="admin-table">
+            <tr><th>Mã</th><th>Khách hàng</th><th>Tổng tiền</th><th>Trạng thái</th></tr>
+            <% orders.forEach((order) => { %>
+                <tr><td>#<%= order.id %></td><td><%= order.customer %></td><td><%= order.total.toLocaleString('vi-VN') %>đ</td><td><%= order.status %></td></tr>
+            <% }) %>
+        </table>
+    </section>
+</div>
+<%- include('../partials/footer') %>
