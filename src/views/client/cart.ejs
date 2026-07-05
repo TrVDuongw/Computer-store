@@ -1,35 +1,35 @@
 <%- include('../partials/header') %>
 <section class="page-title">
-    <h1>Giỏ hàng</h1>
-    <p>Kiểm tra số lượng trước khi đặt hàng.</p>
+  <h1>Giỏ hàng</h1>
+  <p>Kiểm tra số lượng trước khi đặt hàng.</p>
 </section>
 
 <% if (!cart.length) { %>
-    <p class="empty-state">Giỏ hàng đang trống.</p>
+  <p class="empty-state">Giỏ hàng đang trống.</p>
 <% } else { %>
-    <div class="cart-list">
-        <% cart.forEach((item) => { %>
-            <article class="cart-item">
-                <img src="<%= item.product.image %>" alt="<%= item.product.name %>">
-                <div>
-                    <h3><%= item.product.name %></h3>
-                    <p><%= item.product.price.toLocaleString('vi-VN') %>đ</p>
-                </div>
-                <form action="/cart/update/<%= item.product.id %>" method="post" class="quantity-form">
-                    <input type="number" min="1" name="quantity" value="<%= item.quantity %>">
-                    <button type="submit">Cập nhật</button>
-                </form>
-                <form action="/cart/remove/<%= item.product.id %>" method="post">
-                    <button class="danger" type="submit">Xóa</button>
-                </form>
-            </article>
-        <% }) %>
-    </div>
-    <section class="checkout-box">
-        <h2>Tổng tiền: <%= total.toLocaleString('vi-VN') %>đ</h2>
-        <form action="/checkout" method="post">
-            <button class="btn primary" type="submit">Đặt hàng</button>
+  <div class="cart-list">
+    <% cart.forEach((item) => { %>
+      <article class="cart-item">
+        <img src="<%= item.product.image %>" alt="<%= item.product.name %>">
+        <div>
+          <h3><%= item.product.name %></h3>
+          <p><%= item.product.price.toLocaleString('vi-VN') %>đ</p>
+        </div>
+        <form action="/cart/update/<%= item.product.id %>" method="post" class="quantity-form">
+          <input type="number" min="1" name="quantity" value="<%= item.quantity %>">
+          <button type="submit">Cập nhật</button>
         </form>
-    </section>
+        <form action="/cart/remove/<%= item.product.id %>" method="post">
+          <button class="danger" type="submit">Xóa</button>
+        </form>
+      </article>
+    <% }) %>
+  </div>
+  <section class="checkout-box">
+    <h2>Tổng tiền: <%= total.toLocaleString('vi-VN') %>đ</h2>
+    <form action="/checkout" method="post">
+      <button class="btn primary" type="submit">Đặt hàng</button>
+    </form>
+  </section>
 <% } %>
 <%- include('../partials/footer') %>

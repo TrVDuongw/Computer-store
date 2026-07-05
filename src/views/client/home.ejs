@@ -1,50 +1,50 @@
 <%- include('../partials/header') %>
 <section class="hero">
-    <div>
-        <p class="eyebrow">Build PC nhanh, đúng chuẩn tương thích</p>
-        <h1>Linh kiện máy tính cho gaming, đồ họa và học tập</h1>
-        <p>Chọn CPU, mainboard, RAM, VGA và kiểm tra tương thích ngay trong PC Builder.</p>
-        <div class="hero-actions">
-            <a class="btn primary" href="/pc-builder">Mở PC Builder</a>
-            <a class="btn" href="/products">Xem sản phẩm</a>
-        </div>
+  <div>
+    <p class="eyebrow">Build PC nhanh, đúng chuẩn tương thích</p>
+    <h1>Linh kiện máy tính cho gaming, đồ họa và học tập</h1>
+    <p>Chọn CPU, mainboard, RAM, VGA và kiểm tra tương thích ngay trong PC Builder.</p>
+    <div class="hero-actions">
+      <a class="btn primary" href="/pc-builder">Mở PC Builder</a>
+      <a class="btn" href="/products">Xem sản phẩm</a>
     </div>
-    <div class="hero-rig">
-        <img src="/uploads/gpu.svg" alt="Card đồ họa">
-        <strong>RTX 4070 Super</strong>
-        <span>GPU nổi bật trong tuần</span>
-    </div>
+  </div>
+  <div class="hero-rig">
+    <img src="/uploads/gpu.svg" alt="Card đồ họa">
+    <strong>RTX 4070 Super</strong>
+    <span>GPU nổi bật trong tuần</span>
+  </div>
 </section>
 
 <section class="section-head">
-    <h2>Danh mục linh kiện</h2>
-    <a href="/products">Xem tất cả</a>
+  <h2>Danh mục linh kiện</h2>
+  <a href="/products">Xem tất cả</a>
 </section>
 <div class="category-row">
-    <% categories.forEach((category) => { %>
-        <a class="category-chip" href="/products?category=<%= category %>"><%= category %></a>
-    <% }) %>
+  <% categories.forEach((category) => { %>
+    <a class="category-chip" href="/products?category=<%= category %>"><%= category %></a>
+  <% }) %>
 </div>
 
 <section class="section-head">
-    <h2>Sản phẩm nổi bật</h2>
+  <h2>Sản phẩm nổi bật</h2>
 </section>
 <div class="product-grid">
-    <% featuredProducts.forEach((product) => { %>
-        <article class="product-card">
-            <img src="<%= product.image %>" alt="<%= product.name %>">
-            <p class="category"><%= product.category %> - <%= product.brand %></p>
-            <h3><%= product.name %></h3>
-            <p class="price"><%= product.price.toLocaleString('vi-VN') %>đ</p>
-            <div class="card-actions">
-                <a class="btn small" href="/products/<%= product.id %>">Chi tiết</a>
-                <% if (user) { %>
-                    <form action="/cart/add/<%= product.id %>" method="post"><button class="btn small primary" type="submit">Thêm</button></form>
-                <% } else { %>
-                    <a class="btn small primary" href="/login">Đăng nhập để mua</a>
-                <% } %>
-            </div>
-        </article>
-    <% }) %>
+  <% featuredProducts.forEach((product) => { %>
+    <article class="product-card">
+      <img src="<%= product.image %>" alt="<%= product.name %>">
+      <p class="category"><%= product.category %> - <%= product.brand %></p>
+      <h3><%= product.name %></h3>
+      <p class="price"><%= product.price.toLocaleString('vi-VN') %>đ</p>
+      <div class="card-actions">
+        <a class="btn small" href="/products/<%= product.id %>">Chi tiết</a>
+        <% if (user) { %>
+          <form action="/cart/add/<%= product.id %>" method="post"><button class="btn small primary" type="submit">Thêm</button></form>
+        <% } else { %>
+          <a class="btn small primary" href="/login">Đăng nhập để mua</a>
+        <% } %>
+      </div>
+    </article>
+  <% }) %>
 </div>
 <%- include('../partials/footer') %>

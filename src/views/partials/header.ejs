@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %> | Component Store</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/admin.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> | Component Store</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/admin.css">
 </head>
 <body>
-<header class="site-header">
+  <header class="site-header">
     <a class="brand" href="/">Component Store</a>
     <form class="search" action="/products" method="get">
-        <input type="search" name="keyword" placeholder="Tìm CPU, VGA, RAM..." value="<%= typeof filters !== 'undefined' ? (filters.keyword || '') : '' %>">
-        <button type="submit">Tìm</button>
+      <input type="search" name="keyword" placeholder="Tìm CPU, VGA, RAM..." value="<%= typeof filters !== 'undefined' ? (filters.keyword || '') : '' %>">
+      <button type="submit">Tìm</button>
     </form>
     <nav>
-        <a href="/products">Sản phẩm</a>
-        <a href="/pc-builder">PC Builder</a>
-        <a href="/cart">Giỏ hàng (<%= cart.length %>)</a>
-        <% if (user && user.role === 'admin') { %>
-            <a href="/admin">Admin</a>
-        <% } %>
-        <% if (user) { %>
-            <form action="/logout" method="post" class="inline-form"><button type="submit">Đăng xuất</button></form>
-        <% } else { %>
-            <a href="/login">Đăng nhập</a>
-        <% } %>
+      <a href="/products">Sản phẩm</a>
+      <a href="/pc-builder">PC Builder</a>
+      <a href="/cart">Giỏ hàng (<%= cart.length %>)</a>
+      <% if (user && user.role === 'admin') { %>
+        <a href="/admin">Admin</a>
+      <% } %>
+      <% if (user) { %>
+        <form action="/logout" method="post" class="inline-form"><button type="submit">Đăng xuất</button></form>
+      <% } else { %>
+        <a href="/login">Đăng nhập</a>
+      <% } %>
     </nav>
-</header>
-<% if (flash) { %>
+  </header>
+  <% if (flash) { %>
     <div class="flash <%= flash.type %>"><%= flash.message %></div>
-<% } %>
-<main>
+  <% } %>
+  <main>

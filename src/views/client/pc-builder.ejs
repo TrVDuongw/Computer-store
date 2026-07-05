@@ -1,57 +1,57 @@
 <%- include('../partials/header') %>
 <section class="page-title">
-    <h1>PC Builder</h1>
-    <p>Chọn CPU, mainboard, RAM để hệ thống gợi ý linh kiện tương thích.</p>
+  <h1>PC Builder</h1>
+  <p>Chọn CPU, mainboard, RAM để hệ thống gợi ý linh kiện tương thích.</p>
 </section>
 
 <form class="builder-panel" action="/pc-builder" method="get" id="builderForm">
-    <label>
-        CPU
-        <select name="cpuId" id="cpuSelect">
-            <option value="">Chọn CPU</option>
-            <% products.filter((p) => p.category === 'CPU').forEach((product) => { %>
-                <option value="<%= product.id %>" <%= selected.cpuId === product.id ? 'selected' : '' %>><%= product.name %></option>
-            <% }) %>
-        </select>
-    </label>
-    <label>
-        Mainboard
-        <select name="mainboardId" id="mainboardSelect">
-            <option value="">Chọn mainboard</option>
-            <% builder.compatibleMainboards.forEach((product) => { %>
-                <option value="<%= product.id %>" <%= selected.mainboardId === product.id ? 'selected' : '' %>><%= product.name %> - <%= product.specs.socket %></option>
-            <% }) %>
-        </select>
-    </label>
-    <label>
-        RAM
-        <select name="ramId" id="ramSelect">
-            <option value="">Chọn RAM</option>
-            <% builder.compatibleRams.forEach((product) => { %>
-                <option value="<%= product.id %>" <%= selected.ramId === product.id ? 'selected' : '' %>><%= product.name %> - <%= product.specs.type %></option>
-            <% }) %>
-        </select>
-    </label>
-    <button class="btn primary" type="submit">Kiểm tra</button>
+  <label>
+    CPU
+    <select name="cpuId" id="cpuSelect">
+      <option value="">Chọn CPU</option>
+      <% products.filter((p) => p.category === 'CPU').forEach((product) => { %>
+        <option value="<%= product.id %>" <%= selected.cpuId === product.id ? 'selected' : '' %>><%= product.name %></option>
+      <% }) %>
+    </select>
+  </label>
+  <label>
+    Mainboard
+    <select name="mainboardId" id="mainboardSelect">
+      <option value="">Chọn mainboard</option>
+      <% builder.compatibleMainboards.forEach((product) => { %>
+        <option value="<%= product.id %>" <%= selected.mainboardId === product.id ? 'selected' : '' %>><%= product.name %> - <%= product.specs.socket %></option>
+      <% }) %>
+    </select>
+  </label>
+  <label>
+    RAM
+    <select name="ramId" id="ramSelect">
+      <option value="">Chọn RAM</option>
+      <% builder.compatibleRams.forEach((product) => { %>
+        <option value="<%= product.id %>" <%= selected.ramId === product.id ? 'selected' : '' %>><%= product.name %> - <%= product.specs.type %></option>
+      <% }) %>
+    </select>
+  </label>
+  <button class="btn primary" type="submit">Kiểm tra</button>
 </form>
 
 <% if (builder.warnings.length) { %>
-    <div class="compatibility bad">
-        <% builder.warnings.forEach((warning) => { %>
-            <p><%= warning %></p>
-        <% }) %>
-    </div>
+  <div class="compatibility bad">
+    <% builder.warnings.forEach((warning) => { %>
+      <p><%= warning %></p>
+    <% }) %>
+  </div>
 <% } else { %>
-    <div class="compatibility good">Cấu hình hiện tại hợp lệ hoặc đang chờ chọn thêm linh kiện.</div>
+  <div class="compatibility good">Cấu hình hiện tại hợp lệ hoặc đang chờ chọn thêm linh kiện.</div>
 <% } %>
 
 <section class="section-head">
-    <h2>Gợi ý mainboard tương thích</h2>
+  <h2>Gợi ý mainboard tương thích</h2>
 </section>
 <div class="product-grid compact">
-    <% builder.compatibleMainboards.forEach((product) => { %>
-        <article class="product-card"><h3><%= product.name %></h3><p><%= product.specs.socket %> - <%= product.specs.ram %></p><p class="price"><%= product.price.toLocaleString('vi-VN') %>đ</p></article>
-    <% }) %>
+  <% builder.compatibleMainboards.forEach((product) => { %>
+    <article class="product-card"><h3><%= product.name %></h3><p><%= product.specs.socket %> - <%= product.specs.ram %></p><p class="price"><%= product.price.toLocaleString('vi-VN') %>đ</p></article>
+  <% }) %>
 </div>
 <script src="/js/pc-builder-ajax.js"></script>
 <%- include('../partials/footer') %>
