@@ -2,7 +2,7 @@ const mysql = require("mysql2/promise");
 const fs = require("fs");
 const path = require("path");
 
-const envPath = path.join(__dirname, "..", ".env");
+const envPath = path.join(__dirname, "..", "..", ".env");
 if (fs.existsSync(envPath)) {
   const lines = fs.readFileSync(envPath, "utf8").split(/\r?\n/);
   lines.forEach((line) => {
